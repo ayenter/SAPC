@@ -4,6 +4,8 @@
 
 var http = require("http"), querystring = require("querystring"), express = require("express"), path = require("path");
 
+var app = express();
+
 var sw = require('sentiword');
 
 var abs = require('mollusk').abs;
@@ -27,7 +29,8 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
 
 var bodyParser = require('body-parser');
-var app = express();
+// app.use(express.json());
+// app.use(express.urlencoded());
 
 var router = express.Router();
 app.use(express.static('public'));
@@ -183,6 +186,7 @@ app.on("error", function (err) {
 });
 
 app.get('/', function(req, res) {
+    console.log(req);
     "use strict";
     var trump_p = trump_pro_c-trump_con_c;
     var trump_c = (trump_pro-trump_con);
@@ -194,6 +198,10 @@ app.get('/', function(req, res) {
     res.render('index2', {trump_p: trump_p, trump_c: trump_c, trump_per: trump_per, clinton_p: clinton_p, clinton_c: clinton_c, clinton_per: clinton_per});
 });
 
-var server = app.listen(3000);
+
+// app.set('port', process.env.PORT || 3000);
+// app.set('host', process.env.HOST || '0.0.0.0');
+var server = app.listen(8080);
 var address = server.address();
+
 console.log("nudge is listening at http://localhost:" + address.port + "/");
