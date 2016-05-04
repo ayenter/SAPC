@@ -8,8 +8,6 @@ var app = express();
 
 var sw = require('sentiword');
 
-var abs = require('mollusk').abs;
-
 var val = require('mollusk').val;
 
 var Twitter = require('twitter');
@@ -201,7 +199,8 @@ app.get('/', function(req, res) {
 
 // app.set('port', process.env.PORT || 3000);
 // app.set('host', process.env.HOST || '0.0.0.0');
-var server = app.listen(8080);
-var address = server.address();
+app.listen(8080);
+// var server = app.listen(8080, "0.0.0.0");
+// var address = server.address();
 
-console.log("nudge is listening at http://localhost:" + address.port + "/");
+// console.log("nudge is listening at http://localhost:" + address.port + "/");
